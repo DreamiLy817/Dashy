@@ -1,8 +1,6 @@
 <template>
   <div id="app">
-      <div class="container-fluid">
     <router-view/>
-      </div>
   </div>
 </template>
 
@@ -44,6 +42,5 @@ export default {
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
         color: #414141;
-        margin-top: 60px;
     }
 </style>

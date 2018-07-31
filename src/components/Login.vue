@@ -1,22 +1,24 @@
 <template>
-   <div class="sign-container">
-      <div class="sign-content">
-         <p>Sign in to your <br> account</p>
-         <form action="">
-             <label for="email">Email</label>
-             <input type="text" name="email" id="email" placeholder="sophieca@hotmail.fr" required>
-             <label for="mdp">Super secret password</label>
-             <input type="password" name="mdp" id="mdp" required>
-             <input type="submit" value="Sign in!">
-         </form>
-         <p>Forgot your password ? Don't worry, click here :D</p>
-      </div>
-      <div class="sign-img">
-          <div class="img-content"><img src="../assets/img/photoLogin.jpeg" alt=""></div>
-          <div class="img-gradient"></div>
-          <div class="img-texte">Manage your own online business, it's easier than you think</div>
-      </div>
-   </div>
+    <div class="container-fluid">
+        <div class="sign-container">
+            <div class="sign-content">
+                <p>Sign in to your <br> account</p>
+                <form action="">
+                    <label for="email">Email</label>
+                    <input type="text" name="email" id="email" required>
+                    <label for="mdp">Super secret password</label>
+                    <input type="password" name="mdp" id="mdp" required>
+                    <input type="submit" value="Sign in!">
+                </form>
+                <a href="" class="content-link">Forgot your password ? Don't worry, click here :D</a>
+            </div>
+            <div class="sign-img">
+                <div class="img-content"><img src="../assets/img/photoLogin.jpeg" alt=""></div>
+                <div class="img-gradient"></div>
+                <div class="img-texte">Manage your own online business, it's easier than you think</div>
+            </div>
+        </div>
+    </div>
 </template>
 
 <script>
@@ -33,6 +35,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .sign-container {
+    background: white;
     display: flex;
     -webkit-border-radius: 20px;
     -moz-border-radius: 20px;
@@ -46,15 +49,28 @@ export default {
 }
     .sign-content {
         width: 40%;
-        padding: 0 50px 0 100px;
+        padding: 40px 50px 45px 100px;
         display: flex;
         flex-direction: column;
         align-items: flex-start;
         justify-content: center;
     }
+    .sign-content .content-link {
+        text-align: center;
+        width: 100%;
+        text-decoration: none;
+        font-weight: 700;
+        color: #FF8F9C;
+        transition: all 0.3s;
+    }
+.sign-content .content-link:hover {
+    color: #d57683;
+    transition: all 0.3s;
+}
     .sign-content p:first-child {
         font-size: 50px;
         font-weight: 700;
+        line-height: 40px;
     }
     .sign-img {
         width: 60%;
@@ -72,7 +88,7 @@ export default {
     }
 .sign-img .img-texte {
     position: absolute;
-    bottom: 50px;
+    bottom: 90px;
     left: 50px;
     color: white;
     font-size: 30px;
@@ -97,7 +113,8 @@ form {
         width: 100%;
     }
     label {
-        padding-bottom: 20px;
+        padding-bottom: 10px;
+        margin: 0;
     }
     input {
         border: none;
@@ -105,6 +122,7 @@ form {
         padding-bottom: 10px;
         color: #787878;
         margin-bottom: 30px;
+        outline: none;
 
     }
     input[type="submit"] {
@@ -119,10 +137,23 @@ form {
         color: white;
         font-weight: 700;
         font-size: 15px;
+        cursor: pointer;
+        transition: all 0.3s;
     }
 input[type="submit"]:hover {
+    transition: all 0.3s;
     background: white;
-    color: black;
+    color: #414141;
     box-shadow: -1px 0 0 1px rgba(255, 203, 82, 0.75), -1px -1px 0 1px rgba(255, 170, 70, 0.25), -1px 1px 0 1px rgba(255, 170, 70, 0.25), 0 -1px 0 1px rgba(255, 136, 57, 0.5), 0 1px 0 1px rgba(255, 136, 57, 0.5), 1px -1px 0 1px rgba(255, 103, 44, 0.25), 1px 1px 0 1px rgba(255, 103, 44, 0.25), 1px 0 0 1px rgba(255, 69, 31, 0.75);
 }
+    .container-fluid {
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #ECE9E6;  /* fallback for old browsers */
+        background: -webkit-linear-gradient(to left, #FFFFFF, #ECE9E6);  /* Chrome 10-25, Safari 5.1-6 */
+        background: linear-gradient(to left, #FFFFFF, #ECE9E6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+    }
 </style>
