@@ -3,11 +3,11 @@
         <div class="sign-container">
             <div class="sign-content">
                 <p>Sign in to your <br> account</p>
-                <form action="">
+                <form @submit-prevent="login">
                     <label for="email">Email</label>
-                    <input type="text" name="email" id="email" required>
+                    <input v-model="email" type="text" name="email" id="email" required autofocus>
                     <label for="mdp">Super secret password</label>
-                    <input type="password" name="mdp" id="mdp" required>
+                    <input type="password" name="mdp" id="mdp" v-model="password" required>
                     <input type="submit" value="Sign in!">
                 </form>
                 <a href="" class="content-link">Forgot your password ? Don't worry, click here :D</a>
@@ -26,7 +26,14 @@ export default {
   name: 'Home',
   data () {
     return {
-      msg: 'Welcome'
+      email: '',
+      password: ''
+    }
+  },
+  methods: {
+    login () {
+      console.log(this.email)
+      console.log(this.password)
     }
   }
 }
@@ -40,10 +47,9 @@ export default {
     -webkit-border-radius: 20px;
     -moz-border-radius: 20px;
     border-radius: 20px;
-    margin: 0 50px;
-    -webkit-box-shadow: 0px 0px 53px -19px rgba(0,0,0,0.75);
-    -moz-box-shadow: 0px 0px 53px -19px rgba(0,0,0,0.75);
-    box-shadow: 0px 0px 53px -19px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 0 0 53px -19px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0 0 53px -19px rgba(0,0,0,0.75);
+    box-shadow: 0 0 53px -19px rgba(0,0,0,0.75);
     max-width: 80%;
     margin: 0 auto;
 }
@@ -71,19 +77,22 @@ export default {
         font-size: 50px;
         font-weight: 700;
         line-height: 40px;
+        margin: 0;
+        padding-bottom: 40px;
     }
     .sign-img {
         width: 60%;
         overflow: hidden;
         position: relative;
-        max-height: 550px;
         border-bottom-right-radius: 20px;
         border-top-right-radius: 20px;
+        height: 100%;
     }
     .sign-img .img-content img {
         border-bottom-right-radius: 20px;
         border-top-right-radius: 20px;
         height: 100%;
+        max-height: 550px;
 
     }
 .sign-img .img-texte {
@@ -113,7 +122,6 @@ form {
         width: 100%;
     }
     label {
-        padding-bottom: 10px;
         margin: 0;
     }
     input {
@@ -139,6 +147,7 @@ form {
         font-size: 15px;
         cursor: pointer;
         transition: all 0.3s;
+        margin-top: 30px;
     }
 input[type="submit"]:hover {
     transition: all 0.3s;
