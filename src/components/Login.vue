@@ -30,66 +30,6 @@ export default {
     return {
       msg: 'Welcome'
     }
-      methods: {
-
-          login: function login() {
-              const { email, password } = this
-              this.$store.dispatch(AUTH_REQUEST, { email, password }).then(() => {
-                  this.$router.push('/')
-              })
-
-              // state - token filed using local storage token and a status field, representing the status of the API call ( loading, success or error )
-              const state = { token: localStorage.getItem('user-token') }
-
-
-              const getters = {
-                  isAuthenticated: state => !!state.token,
-                  authStatus: state => state.status,
-              }
-
-              const actions = {
-                  [AUTH_REQUEST]: ({commit, dispatch}, user) => {
-                      return new Promise((resolve, reject) => { // The Promise used for router redirect in login
-                          commit(AUTH_REQUEST)
-                          axios({url: 'auth', data: user, method: 'POST' })
-                              .then(resp => {
-                                  const token = resp.data.token
-                                  localStorage.setItem('user-token', token) // store the token in localstorage
-                                  commit(AUTH_SUCCESS, token)
-                                  // you have your token, now log in your user :)
-                                  dispatch(USER_REQUEST)
-                                  resolve(resp)
-                              })
-                              .catch(err => {
-                                  commit(AUTH_ERROR, err)
-                                  localStorage.removeItem('user-token') // if the request fails, remove any possible user token if possible
-                                  reject(err)
-                              })
-                      })
-                  },
-                  [AUTH_LOGOUT]: ({commit, dispatch}) => {
-                      return new Promise((resolve, reject) => {
-                          commit(AUTH_LOGOUT)
-                          localStorage.removeItem('user-token') // clear your user's token from localstorage
-                          resolve()
-                      })
-                  }
-              }
-
-              const mutations = {
-                  [AUTH_REQUEST]: (state) => {
-                      state.status = 'loading'
-                  },
-                  [AUTH_SUCCESS]: (state, token) => {
-                      state.status = 'success'
-                      state.token = token
-                  },
-                  [AUTH_ERROR]: (state) => {
-                      state.status = 'error'
-                  },
-              }
-          }
-      }
   }
 }
 </script>
@@ -99,15 +39,14 @@ export default {
     .sign-container {
         background: white;
         display: flex;
-        -webkit-border-radius: 20px;
-        -moz-border-radius: 20px;
         border-radius: 20px;
-        -webkit-box-shadow: 0 0 53px -19px rgba(0, 0, 0, 0.75);
-        -moz-box-shadow: 0 0 53px -19px rgba(0, 0, 0, 0.75);
         box-shadow: 0 0 53px -19px rgba(0, 0, 0, 0.75);
         max-width: 80%;
         margin: 0 auto;
-        max-height: 68%;
+        max-height: 560px;
+        height: 100%;
+    }
+    .img-content {
         height: 100%;
     }
 
@@ -117,8 +56,6 @@ export default {
         flex-direction: column;
         align-items: flex-start;
         justify-content: center;
-    }
-    .sign-content .sign-padding {
         padding: 40px 50px 45px 100px;
     }
 
@@ -156,7 +93,8 @@ export default {
     .sign-img .img-content img {
         border-bottom-right-radius: 20px;
         border-top-right-radius: 20px;
-        width: 100%;
+        height: 100%;
+        width: auto;
 
     }
 
@@ -208,8 +146,6 @@ export default {
         background: #DAD299; /* fallback for old browsers */
         background: -webkit-linear-gradient(to bottom, #FF8F9C, #FFAF9D, #FFC69E); /* Chrome 10-25, Safari 5.1-6 */
         background: linear-gradient(to bottom, #FF8F9C, #FFAF9D, #FFC69E); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-        -webkit-border-radius: 50%;
-        -moz-border-radius: 50%;
         border-radius: 30px;
         padding: 15px;
         color: white;
